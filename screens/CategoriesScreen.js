@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Button, FlatList } from 'react-native';
 
 const CategoriesScreen = props => {
     return(
-        <View style={styles.screen}>
-            <Text>CategoriesScreen workds</Text>
-        </View>
+      <FlatList numColumns={2}>
+
+      </FlatList>
     );
 }
 
