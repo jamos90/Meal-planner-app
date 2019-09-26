@@ -2,13 +2,13 @@ import React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
 
-const FavoritesScreen = props => {
+const MealDetailScreen = props => {
     return(
         <View style={styles.screen}>
-            <Text>FaVScreen workds</Text>
+            <Text>MealDetailScreen works</Text>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     screen: {
@@ -16,6 +16,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     }
-})
+});
 
-export default FavoritesScreen
+export default MealDetailScreen
