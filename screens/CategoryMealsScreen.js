@@ -1,14 +1,61 @@
 import React from 'react';
+import { StyleSheet, View, Text, Button, FlatList} from 'react-native';
 
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { CATEGORIES, MEALS } from '../data/dummy-data';
+
+import MealItem from '../components/MealItem';
+
+
 
 const CategoriesMealScreen = props => {
+
+    const catId = props.navigation.getParam('categoryId');
+
+    const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
+
+    const displayedMeals = MEALS.filter((meal)=>{
+        return meal.categoryIds.indexOf(catId) !== -1
+    });
+
+    const renderMealItem =  (itemData)=> {
+        return <MealItem 
+                    title={itemData.item.title} 
+                    duration={itemData.item.duration}
+                    complexity={itemData.item.complexity.toUpperCase()} 
+                    affordability={itemData.item.affordability}
+                    image={itemData.item.imageUrl}
+                    onSelectMeal={()=> {
+                        props.navigation.navigate({routeName: 'MealDetail', params: {
+                            mealId: itemData.item.id
+                        }})
+                    }}
+                />    
+        
+    }
+
     return(
         <View style={styles.screen}>
-            <Text>CategoriesMealScreen workds</Text>
-            <Button title="go to details" onPress={()=>props.navigation.navigate({routeName: "MealDetail"})}></Button>
+            <FlatList 
+                data={displayedMeals} 
+                keyExtractor={(item,index)=>{item.id}} 
+                renderItem={renderMealItem}
+                style={styles.listStyle}
+            />
+                
+        
         </View>
     );
+};
+
+CategoriesMealScreen.navigationOptions = navigationData => {
+
+    const catId = navigationData.navigation.getParam('categoryId')
+
+    const selectedCategory = CATEGORIES.find(cat => cat.id === catId)
+
+    return {
+        headerTitle: selectedCategory.title,
+    }
 }
 
 const styles = StyleSheet.create({
@@ -16,7 +63,10 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    listStyle: {
+        width: '100%'
     }
-})
+});
 
 export default CategoriesMealScreen
