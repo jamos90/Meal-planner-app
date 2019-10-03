@@ -4,6 +4,9 @@ import { StyleSheet, View, Text, Button, FlatList, TouchableOpacity} from 'react
 import { CATEGORIES } from '../data/dummy-data';
 
 import CategoryGridTile from '../components/categoryGridTile';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
+
+import HeaderButton from '../components/HeaderButton';
 
 
 
@@ -29,8 +32,14 @@ const CategoriesScreen = props => {
     );
 };
 
-CategoriesScreen.navigationOptions = {
-    headerTitle: 'Meal Categories',
+CategoriesScreen.navigationOptions = (navData) => {
+    return {
+        headerTitle: 'Meal Categories',
+        headerLeft:
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <Item title="Menu" iconName="ios-menu" onPress={()=>{navData.navigation.toggleDrawer()}}></Item>
+        </HeaderButtons>
+        }
 }
 
 const styles = StyleSheet.create({
