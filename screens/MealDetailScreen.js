@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { ScrollView, StyleSheet, View, Text, Button, Image } from 'react-native';
 import { MEALS }  from '../data/dummy-data';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/HeaderButton';
+import DefaultText from '../components/defaultText';
 
 const MealDetailScreen = props => {
 
@@ -14,10 +15,19 @@ const MealDetailScreen = props => {
 
 
     return(
-        <View style={styles.screen}>
-            <Text>{selectedMeal.title}</Text>
-            <Button title="take me back to detaisl" onPress={()=>props.navigation.popToTop()}></Button>
-        </View>
+        <ScrollView>
+            <Image style={styles.image} source={{uri: selectedMeal.imageUrl}}/>
+            <View style={styles.details}>
+                <DefaultText>{selectedMeal.duration}</DefaultText>
+                <DefaultText>{selectedMeal.complexity.toUpperCase()} </DefaultText>
+                <DefaultText>{selectedMeal.affordability.toUpperCase()} </DefaultText>
+            </View>
+            <Text style={styles.title}>Ingredients</Text>
+            <Text style={styles.content}>List of Ingredients</Text>
+
+            <Text style={styles.title}>Steps</Text>
+            <Text style={styles.content}>...list of steps</Text>
+        </ScrollView>
     );
 };
 
