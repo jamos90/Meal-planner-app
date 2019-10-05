@@ -5,8 +5,8 @@ import Colors from '../constants/colors';
 const FilterSwitch = props => {
     return (
         <View style={styles.filterContainer}>
-            <Text>{props.children}</Text>
-            <Switch value={props.value} onValueChange={newValue => props.onChange(newValue)} trackColor={{true: Colors.primaryColor}} thumbColor={ Platform.OS === 'android' ? Colors.primaryColor : ''}/>
+            <Text>{props.label}</Text>
+            <Switch value={props.value} onValueChange={newValue => props.onChange(newValue, props.label)} trackColor={{true: Colors.primaryColor}} thumbColor={ Platform.OS === 'android' ? Colors.primaryColor : ''}/>
         </View>
     )
 };

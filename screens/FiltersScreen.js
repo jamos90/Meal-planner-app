@@ -9,30 +9,35 @@ import Colors from '../constants/colors';
 
 const FiltersScreen = props => {
 
-    const [isGlutenFree, setIsGlutenFree] = useState(false)
+    const [isGlutenFree, setIsGlutenFree] = useState(false);
+    const [isLactoseFree, setIsLactoseFree] = useState(false);
+    const [isVegan, setIsVegan] = useState(false);
+    const [isVegetarian, setIsVegetarian] = useState(false);
 
-    const onSwitchChange = useCallback((switchStatus)=>{
+    const onSwitchChange = useCallback((switchStatus, label)=>{
 
-        console.log(switchStatus);
+        if(label === 'Gluten Free') {
+            setIsGlutenFree(switchStatus);
+        }
+        if(label === 'Lactose Free') {
+            setIsLactoseFree(switchStatus)
+        }
+        if(label === 'Vegan') {
+            setIsVegan(switchStatus)
+        }
+        if(label === 'Vegetarian') {
+            setIsVegetarian(switchStatus)
+        }
 
-        setIsGlutenFree(switchStatus);
-    }, [isGlutenFree]);
+    }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
 
     return(
         <View style={styles.screen}>
             <Text style={styles.title}> Available Filters / Restrictions </Text>
-            <FilterSwitch value={isGlutenFree} onChange={onSwitchChange}>Gluten Free</FilterSwitch>
-
-
-            {/* <View style={styles.filterContainer}>
-            
-                <Text>Gluten-Free</Text>
-                <Switch value={isGlutenFree} onValueChange={newValue => setIsGlutenFree(newValue)} trackColor={{true: Colors.primaryColor}} thumbColor={ Platform.OS === 'android' ? Colors.primaryColor : ''}/>
-            </View>
-            <View style={styles.filterContainer}>
-                <Text>Lactose-Free</Text>
-                <Switch value={isGlutenFree} onValueChange={newValue => setIsGlutenFree(newValue)} trackColor={{true: Colors.primaryColor}} thumbColor={ Platform.OS === 'android' ? Colors.primaryColor : ''}/>
-            </View> */}
+            <FilterSwitch label="Gluten Free" value={isGlutenFree} onChange={onSwitchChange}/>
+            <FilterSwitch label="Lactose Free" value={isLactoseFree} onChange={onSwitchChange}/>
+            <FilterSwitch label="Vegan" value={isVegan} onChange={onSwitchChange}/>
+            <FilterSwitch label="Vegetarian" value={isVegetarian} onChange={onSwitchChange}/>
         </View>
     );
 }
