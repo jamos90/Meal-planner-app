@@ -73,7 +73,6 @@ const tabScreenConfig =  {
                 return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor}/>;
             },
             tabBarColor: Colors.accentColor,
-            tabBarLabel
         }
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, Stylesheet } from 'react-native';
+import {Text, StyleSheet } from 'react-native';
 
 const DefaultText = props => {
     return (
@@ -9,7 +9,7 @@ const DefaultText = props => {
 
 const styles = StyleSheet.create({
     defaultText: {
-        
+        fontFamily: 'open-sans'
     }
 });
 
