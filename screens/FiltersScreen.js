@@ -1,24 +1,41 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 
-import { StyleSheet, View, Text, Switch } from 'react-native';
+import { StyleSheet, View, Text, Switch, Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import HeaderButton from '../components/HeaderButton';
+import FilterSwitch from '../components/filterSwitch';
+import Colors from '../constants/colors';
 
 const FiltersScreen = props => {
+
+    const [isGlutenFree, setIsGlutenFree] = useState(false)
+
+    const onSwitchChange = useCallback((switchStatus)=>{
+
+        console.log(switchStatus);
+
+        setIsGlutenFree(switchStatus);
+    }, [isGlutenFree]);
+
     return(
         <View style={styles.screen}>
             <Text style={styles.title}> Available Filters / Restrictions </Text>
-            <View style={styles.filterContainer}>
+            <FilterSwitch value={isGlutenFree} onChange={onSwitchChange}>Gluten Free</FilterSwitch>
+
+
+            {/* <View style={styles.filterContainer}>
+            
                 <Text>Gluten-Free</Text>
-                <Switch/>
+                <Switch value={isGlutenFree} onValueChange={newValue => setIsGlutenFree(newValue)} trackColor={{true: Colors.primaryColor}} thumbColor={ Platform.OS === 'android' ? Colors.primaryColor : ''}/>
             </View>
+            <View style={styles.filterContainer}>
+                <Text>Lactose-Free</Text>
+                <Switch value={isGlutenFree} onValueChange={newValue => setIsGlutenFree(newValue)} trackColor={{true: Colors.primaryColor}} thumbColor={ Platform.OS === 'android' ? Colors.primaryColor : ''}/>
+            </View> */}
         </View>
     );
 }
-
-
-
 
 FiltersScreen.navigationOptions = (navData) => {
     return {
