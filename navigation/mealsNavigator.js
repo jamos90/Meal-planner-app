@@ -20,7 +20,11 @@ const defaultStackNavOptions = {
     headerStyle: {
         backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
     },
+    headerTitleStyle: {
+        fontFamily: 'open-sans-bold'
+    },
     headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
+
 }
 
 
@@ -68,7 +72,8 @@ const tabScreenConfig =  {
             tabBarIcon: (tabInfo) => {
                 return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor}/>;
             },
-            tabBarColor: Colors.accentColor
+            tabBarColor: Colors.accentColor,
+            tabBarLabel
         }
     }
 }
@@ -76,6 +81,9 @@ const tabScreenConfig =  {
 const MealsFavTabNavigator = Platform.OS === 'android' ? createMaterialBottomTabNavigator(tabScreenConfig, {activeColor: 'white', shifting: true})  : createBottomTabNavigator  ({
     tabScreenConfig,
     tabBarOptions: {
+        labelStyle: {
+            fontFamily: 'open-sans-bold'
+        },
         activeTintColor: Colors.accentColor
     }    
 });
