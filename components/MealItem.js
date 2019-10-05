@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList, View, Text, StyleSheet, TouchableOpacity, TouchableNativeFeedback, ImageBackground } from 'react-native';
+import DefaultText from '../components/defaultText';
 
 const MealItem = props =>{
     return (
@@ -12,9 +13,9 @@ const MealItem = props =>{
                     </ImageBackground>
                 </View>
                 <View style={{...styles.mealRow,...styles.mealDetail}}>
-                    <Text>{props.duration}</Text>
-                    <Text>{props.complexity} </Text>
-                    <Text>{props.affordability} </Text>
+                    <DefaultText>{props.duration}</DefaultText>
+                    <DefaultText>{props.complexity.toUpperCase()} </DefaultText>
+                    <DefaultText>{props.affordability.toUpperCase()} </DefaultText>
                 </View>
             </View>
         </TouchableOpacity>
