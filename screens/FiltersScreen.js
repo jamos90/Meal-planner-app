@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 import { StyleSheet, View, Text, Switch, Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
@@ -9,10 +9,29 @@ import Colors from '../constants/colors';
 
 const FiltersScreen = props => {
 
+    const { navigation } = props;
+
     const [isGlutenFree, setIsGlutenFree] = useState(false);
     const [isLactoseFree, setIsLactoseFree] = useState(false);
     const [isVegan, setIsVegan] = useState(false);
     const [isVegetarian, setIsVegetarian] = useState(false);
+
+    const saveFilters = useCallback(() => {
+        const appliedFilters= {
+            glutenFree: isGlutenFree,
+            lactoseFree: isLactoseFree,
+            vegan: isVegan,
+            vegetarian: isVegetarian
+        };
+
+        console.log(appliedFilters);
+    }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
+
+    useEffect(()=>{
+        navigation.setParams({
+            save: saveFilters
+        });
+    }, [saveFilters]);
 
     const onSwitchChange = useCallback((switchStatus, label)=>{
 
@@ -48,11 +67,12 @@ FiltersScreen.navigationOptions = (navData) => {
         headerLeft: 
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item title="Menu" iconName={'ios-menu'} onPress={()=> navData.navigation.toggleDrawer()}></Item>
+        </HeaderButtons>,
+        headerRight: 
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <Item title="Menu" iconName={'ios-save'} onPress={navData.navigation.getParam('save')}></Item>
         </HeaderButtons>
-
-    }   
-    
-    
+    }      
 }
 
 const styles = StyleSheet.create({
@@ -60,18 +80,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
-    filterContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '80%'
-        
-    },
     title: {
         fontFamily: 'open-sans-bold',
         fontSize: 22,
         margin: 20,
-        textAlign: 'center'
+        textAlign: 'center',
     }
 })
 

@@ -12,7 +12,14 @@ const FilterSwitch = props => {
 };
 
 const styles = StyleSheet.create({
-
+    filterContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '80%',
+        marginVertical: 10
+        
+    },
 });
 
 export default FilterSwitch;
