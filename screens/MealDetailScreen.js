@@ -15,14 +15,12 @@ const ListItem = props => {
     )
 }
 
-
 const MealDetailScreen = props => {
 
     const mealId = props.navigation.getParam('mealId');
 
     const selectedMeal = MEALS.find(meal => meal.id === mealId);
-
-
+    
     return(
         <ScrollView>
             <Image style={styles.image} source={{uri: selectedMeal.imageUrl}}/>

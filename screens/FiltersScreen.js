@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Switch } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import HeaderButton from '../components/HeaderButton';
@@ -8,10 +8,17 @@ import HeaderButton from '../components/HeaderButton';
 const FiltersScreen = props => {
     return(
         <View style={styles.screen}>
-            <Text>FiltersScreen workds</Text>
+            <Text style={styles.title}> Available Filters / Restrictions </Text>
+            <View style={styles.filterContainer}>
+                <Text>Gluten-Free</Text>
+                <Switch/>
+            </View>
         </View>
     );
 }
+
+
+
 
 FiltersScreen.navigationOptions = (navData) => {
     return {
@@ -30,7 +37,19 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+    },
+    filterContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '80%'
+        
+    },
+    title: {
+        fontFamily: 'open-sans-bold',
+        fontSize: 22,
+        margin: 20,
+        textAlign: 'center'
     }
 })
 
